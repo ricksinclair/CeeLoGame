@@ -4,6 +4,7 @@ var wins, currentScore, activePlayer, trips;
 
 init();
 
+//Click roll
 document.querySelector('.btn-roll').addEventListener('click', function() {
 	var dice1 = Math.floor(Math.random() * 6) + 1;
 	var dice2 = Math.floor(Math.random() * 6) + 1;
@@ -28,9 +29,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 		|| (dice1 === 5 && dice2 === 6 && dice3 === 4) || (dice1 === 6 && dice2 === 4 && dice3 === 5) || (dice1 === 6 && dice2 === 5 && dice3 === 4))
 	{
 		//Add score
-		wins[activePlayer]+=1;
+		wins[activePlayer]++;
 		document.getElementById('score-' + activePlayer).textContent = wins[activePlayer];
-
+		document.getElementById('current-' + activePlayer).textContent = '4-5-6';
 		document.getElementById('description-' + activePlayer).style.display = 'block';
 		document.getElementById('description-' + activePlayer).textContent = '4-5-6';
 
@@ -48,19 +49,19 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 	else if((dice1 === 1 && dice2 === 2 && dice3 === 3) || (dice1 === 1 && dice2 === 3 && dice3 === 2) || (dice1 === 2 && dice2 === 1 && dice3 === 3) 
 		|| (dice1 === 2 && dice2 === 3 && dice3 === 1) || (dice1 === 3 && dice2 === 1 && dice3 === 2) || (dice1 === 3 && dice2 === 2 && dice3 === 1))
 	{
-		onetwothree = true;
-
 		if(activePlayer === 1)
 		{
-			wins[0]+=1;
+			wins[0]++;
 			document.getElementById('score-0').textContent = wins[0];
+			document.getElementById('current-1').textContent = '1-2-3';
 			document.getElementById('description-1').style.display = 'block';
 			document.getElementById('description-1').textContent = '1-2-3';
 		}
 		else
 		{
-			wins[1]+=1;
+			wins[1]++;
 			document.getElementById('score-1').textContent = wins[1];
+			document.getElementById('current-0').textContent = '1-2-3';
 			document.getElementById('description-0').style.display = 'block';
 			document.getElementById('description-0').textContent = '1-2-3';			
 		}
@@ -117,6 +118,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 	}
 });
 
+//Click End
 document.querySelector('.btn-end').addEventListener('click', function() {
 	var winner = -1;
 
@@ -140,7 +142,7 @@ document.querySelector('.btn-end').addEventListener('click', function() {
 
 });
 
-//Start new game
+//Click new
 document.querySelector('.btn-new').addEventListener('click', init);
 
 function nextPlayer()
@@ -189,7 +191,6 @@ function init()
 	document.querySelector('.player-0-panel').classList.remove('active');
 	document.querySelector('.player-1-panel').classList.remove('active');
 	document.querySelector('.player-0-panel').classList.add('active');	
-
 }
 
 function switchPlayers()
